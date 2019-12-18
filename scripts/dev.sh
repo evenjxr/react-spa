@@ -1,0 +1,1 @@
+webpack-dev-server --config=./config/webpack.dev.config.js
