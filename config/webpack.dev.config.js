@@ -22,4 +22,4 @@ const config = {
     ]
 }
 
-module.exports = smp.wrap(merge(config, baseConfig));
+module.exports = smp.wrap(merge(baseConfig, config));

@@ -40,4 +40,4 @@ const config = {
 }
 //https://alexkuz.github.io/webpack-chart/
 //http://webpack.github.io/analyse/
-module.exports = merge(config, baseConfig);
+module.exports = merge(baseConfig, config);

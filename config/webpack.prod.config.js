@@ -2,12 +2,10 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const ora = require('ora')
 
 const config = {
     output: {
         filename: 'static/[name].[chunkhash:4].bundle.js',
-        // chunkFilename: 'static/[name].[chunkhash:5].bundle.js'
     },
     mode: 'production',
     optimization: {
@@ -41,4 +39,4 @@ const config = {
         new ManifestPlugin()
     ]
 }
-module.exports = merge(config, baseConfig);
+module.exports = merge(baseConfig, config);
