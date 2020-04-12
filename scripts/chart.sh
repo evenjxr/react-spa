@@ -1,1 +1,0 @@
-webpack --config=./config/webpack.chart.config.js --profile --json > stas.json

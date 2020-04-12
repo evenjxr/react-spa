@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "scripty",
-    "chart": "scripty",
+    "analyz": "scripty",
     "prod": "node ./scripts/prod.js"
   },
   "author": "evenjxr",
@@ -37,6 +37,7 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.41.2",
     "webpack-build-notifier": "^2.0.0",
+    "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-manifest-plugin": "^2.2.0",

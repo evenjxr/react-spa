@@ -5,11 +5,29 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maixmum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>快速构建React</title>
+    <style>
+      .loading {
+        position: absolute;
+        display: block;
+        width: 4vw;
+        top: 40vh;
+        left: 45vw;
+        animation: rotateLoading 1s linear infinite;
+      }
+      @keyframes rotateLoading {
+          from {
+              transform: rotate(0deg);
+          }
+          to {
+              transform: rotate(360deg);
+          }
+      }
+    </style>
 </head>
 <body>
     <div id="root">
-        <%= htmlWebpackPlugin.options.loading %> 
+      <img class="loading" src="http://ks-jinrong-img.ks3-cn-beijing.ksyun.com/activity-online/ks_loan_web/loading.png" alt="">
     </div>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set"></script>
+    <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set"></script> -->
 </body>
 </html>

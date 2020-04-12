@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route, Router, HashRouter, Link, Redirect } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 const Login = lazy(() => import('./pages/login/index'));
 const User = lazy(() => import('./pages/user/index'));
 const Error = lazy(() => import('./pages/error/index'));
@@ -7,7 +7,7 @@ const Error = lazy(() => import('./pages/error/index'));
 
 export const AppRoutes = () => {
 	return (
-		<HashRouter>
+		<BrowserRouter>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Switch>
 					<Route exact path="/" component={Login} />
@@ -16,7 +16,7 @@ export const AppRoutes = () => {
 					<Route component={Error} />
 				</Switch>
 			</Suspense>
-		</HashRouter>
+		</BrowserRouter>
 	);
 };
 
@@ -25,7 +25,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 	return (
 		<Route
 			{...rest}
-			render={props =>
+			render = {props =>
 				false ? <Component {...props} /> : <Redirect to="/login" />
 			}
 		/>

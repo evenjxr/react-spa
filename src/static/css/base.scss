@@ -3,9 +3,14 @@
 @import "./common/variable.scss";
 
 html {
-    font-size: 10vw;
+  font-size: 10vw!important;
+}
+@media (min-width: 540px) {
+  html {
+    font-size: 54px!important; /*no*/
+  }
 }
 html, body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
