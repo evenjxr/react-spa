@@ -28,6 +28,28 @@ const config = {
         exclude: /node_modules/
       },
       {
+        test: /\.css$/,
+        loader: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+              filename: "[name].css?[hash:4]"
+            }
+          },
+          {
+            loader: "css-loader",
+            options: {
+              import: true,
+              modules: {
+                localIdentName: '[name]_[local]_[hash:base64:5]'
+              }
+            }
+          },
+          'sass-loader'
+        ]
+      },
+      {
         test: /\.s[a|c]ss$/,
         loader: [
           {
