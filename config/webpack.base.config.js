@@ -23,7 +23,18 @@ const config = {
     rules: [
       {
         test: /\.(jsx|js)$/,
-        loader: 'babel-loader',
+        enforce: 'pre',
+        loader: [
+          'babel-loader',
+          {
+            loader: 'eslint-loader',
+            options: { 
+              fix: true,
+              cache: true,
+              emitWarning: true
+            }
+          }
+        ],
         include: [resolve('src')],
         exclude: /node_modules/
       },

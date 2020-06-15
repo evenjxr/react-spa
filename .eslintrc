@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "destructuring": false, // 解构赋值
+      "classes": true,
+      "defaultParams": true, // 函数参数的默认值
+      "blockBindings": true // 块儿级作用域
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "eslint-plugin-react"
+  ],
+  "rules": {
+    "accessor-pairs": 2,
+    "array-bracket-spacing": [2, "never"],
+    "camelcase": 2
+  }
+}

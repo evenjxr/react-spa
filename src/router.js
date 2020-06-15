@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 const Login = lazy(() => import('./pages/login/index'));
 const User = lazy(() => import('./pages/user/index'));
-const Error = lazy(() => import('./pages/error/index'));
+const Error = lazy(() => import('./pages/error/index'))
 
 
 export const AppRoutes = () => {
@@ -12,7 +14,7 @@ export const AppRoutes = () => {
 				<Switch>
 					<Route exact path="/" component={Login} />
 					<AuthRoute path="/user" component={User} />
-					<Route path="/error/:code" component={Error} />
+					    <Route path="/error/:code" component={Error} />
 					<Route component={Error} />
 				</Switch>
 			</Suspense>
@@ -22,12 +24,18 @@ export const AppRoutes = () => {
 
 // 路由登录鉴权
 const AuthRoute = ({ component: Component, ...rest }) => {
-	return (
-		<Route
-			{...rest}
-			render = {props =>
-				false ? <Component {...props} /> : <Redirect to="/login" />
-			}
-		/>
-	);
+  return (<Route
+    {...rest}
+    render = {props =>
+      hasAuth() ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />)
 };
+
+AuthRoute.propTypes = {
+  component:PropTypes.element.isRequired,
+}
+
+function hasAuth() {
+  return false
+}
