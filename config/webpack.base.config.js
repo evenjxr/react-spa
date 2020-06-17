@@ -96,7 +96,7 @@ const config = {
     new ProgressBarPlugin(),
     new MiniCssExtractPlugin({
       filename: "./style/[name].css?[hash:4]"
-    }),
+    })
   ]
 }
 module.exports = config;

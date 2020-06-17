@@ -10,7 +10,7 @@ const config = {
   mode: 'production',
   optimization: {
     runtimeChunk: {
-      name: 'manifest'
+      name: 'runtime'
     },
     minimizer: [
       new UglifyJsPlugin({
