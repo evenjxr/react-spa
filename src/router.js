@@ -7,14 +7,14 @@ const User = lazy(() => import('./pages/user/index'));
 const Error = lazy(() => import('./pages/error/index'))
 
 
-export const AppRoutes = () => {
+export default function AppRoutes() {
 	return (
 		<BrowserRouter>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Switch>
 					<Route exact path="/" component={Login} />
-					<AuthRoute path="/user" component={User} />
-					    <Route path="/error/:code" component={Error} />
+					{/* <AuthRoute path="/user" component={User} /> */}
+					<Route path="/error/:code" component={Error} />
 					<Route component={Error} />
 				</Switch>
 			</Suspense>

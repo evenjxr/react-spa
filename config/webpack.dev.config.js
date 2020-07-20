@@ -1,9 +1,8 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config')
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const smp = new SpeedMeasurePlugin();
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const webpack = require('webpack')
 
 const config = {
   devServer: {
@@ -11,7 +10,8 @@ const config = {
     host: 'localhost',
     open: true,
     quiet: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
   plugins: [
     new WebpackBuildNotifierPlugin({
@@ -20,7 +20,8 @@ const config = {
       suppressSuccess: true
     }),
     new FriendlyErrorsWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
 
-module.exports = smp.wrap(merge(baseConfig, config));
+module.exports = merge(baseConfig, config);

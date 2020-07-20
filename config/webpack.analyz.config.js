@@ -3,6 +3,8 @@ const baseConfig = require('./webpack.base.config')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
 
 const config = {
   output: {
@@ -54,4 +56,5 @@ const config = {
     })
   ]
 }
-module.exports = merge(baseConfig, config);
+
+module.exports = smp.wrap(merge(baseConfig, config));

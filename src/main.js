@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppRoutes } from './router';
+import Router from './router';
 import './static/css/base.scss';
 
-ReactDOM.render(
-  <AppRoutes />,
-  document.getElementById('root')
-)
+ReactDOM.render(<Router />, document.getElementById('root'))
+
+
+if (module.hot) {
+  module.hot.accept('./router', ()=>{
+    const Router = require("./router").default;
+    console.log('跟新了')
+    ReactDOM.render(<Router />, document.getElementById('root'))
+  })
+}
