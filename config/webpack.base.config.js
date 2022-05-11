@@ -1,14 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const { resolve } = require('path')
-const argv = require('yargs-parser')(process.argv.slice(2))
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { resolve } = require('path');
+const argv = require('yargs-parser')(process.argv.slice(2));
 
 const config = {
   mode: 'development',
   entry: {
-    'main': './src/main.js',
+    main: './src/main.js'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css', '.sass'],
@@ -17,18 +17,16 @@ const config = {
     }
   },
   devServer: {},
-  optimization: {
-  },
+  optimization: {},
   module: {
     rules: [
       {
         test: /\.(jsx|js)$/,
-        enforce: 'pre',
-        loader: [
+        use: [
           'babel-loader',
           {
             loader: 'eslint-loader',
-            options: { 
+            options: {
               fix: true,
               cache: true,
               emitWarning: true
@@ -40,16 +38,16 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: [
+        use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '../',
-              filename: "[name].css?[hash:4]"
+              filename: '[name].css?[hash:4]'
             }
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               import: true,
               modules: {
@@ -62,12 +60,12 @@ const config = {
       },
       {
         test: /\.s[a|c]ss$/,
-        loader: [
+        use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: '../',
-              filename: "[name].css?[hash:4]"
+              filename: '[name].css?[hash:4]'
             }
           },
           'css-loader',
@@ -76,27 +74,22 @@ const config = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          outputPath: 'img',
-          name: '[name].[ext]?[hash:4]'
-        }
+        type: 'asset/inlne'
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new ProgressBarPlugin(),
+    new MiniCssExtractPlugin({
+      filename: './style/[name].css?[hash:4]'
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
       hash: true,
       loading: '<span>加载中...</span>'
     }),
-    new ProgressBarPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "./style/[name].css?[hash:4]"
-    })
   ]
-}
+};
 module.exports = config;

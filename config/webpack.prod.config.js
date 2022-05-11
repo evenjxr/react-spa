@@ -1,11 +1,11 @@
-const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base.config')
+const baseConfig = require('./webpack.base.config');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const { merge } = require('webpack-merge');
 
 const config = {
   output: {
-    filename: 'static/[name].[chunkhash:4].bundle.js',
+    filename: 'static/[name].[chunkhash:4].bundle.js'
   },
   mode: 'production',
   optimization: {
@@ -14,8 +14,8 @@ const config = {
     },
     minimizer: [
       new UglifyJsPlugin({
-        parallel: true,
-      }),
+        parallel: true
+      })
     ],
     splitChunks: {
       cacheGroups: {
@@ -35,8 +35,6 @@ const config = {
       }
     }
   },
-  plugins: [
-    new ManifestPlugin()
-  ]
-}
+  plugins: [new ManifestPlugin()]
+};
 module.exports = merge(baseConfig, config);

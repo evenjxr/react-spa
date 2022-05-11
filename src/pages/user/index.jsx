@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
-
 class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName: '用户'
-    }
+      pageName: '用户1'
+    };
   }
 
   render() {
-    return (
-      <h1>{this.state.pageName}</h1>
-    )
+    return <h1>{this.state.pageName}</h1>;
   }
 }
 
-export default User
+export default User;

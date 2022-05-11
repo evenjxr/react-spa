@@ -1,1 +1,1 @@
-webpack-dev-server --config=./config/webpack.dev.config.js
+webpack-dev-server --no-stats  --config=./config/webpack.dev.config.js

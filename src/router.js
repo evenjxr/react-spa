@@ -1,19 +1,20 @@
-import React, { lazy, Suspense } from "react";
-import { Switch, Route, HashRouter, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { lazy, Suspense } from 'react';
+import { Switch, Route, HashRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Login = lazy(() => import("./pages/login/index"));
-const User = lazy(() => import("./pages/user/index"));
-const Error = lazy(() => import("./pages/error/index"));
+const Login = lazy(() => import('./pages/login/index'));
+const User = lazy(() => import('./pages/user/index'));
+const Error = lazy(() => import('./pages/error/index'));
 
 export default function AppRoutes() {
   return (
     <HashRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/" component={Login} />
-          {/* <AuthRoute path="/user" component={User} /> */}
-          <Route path="/error/:code" component={Error} />
+          <Route exact path='/' component={Login} />
+          {/* <Route exact path='/user' component={User} /> */}
+          {/* <AuthRoute path='/user' component={User} /> */}
+          <Route path='/error/:code' component={Error} />
           <Route component={Error} />
         </Switch>
       </Suspense>
@@ -26,8 +27,9 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
-        hasAuth() ? <Component {...props} /> : <Redirect to="/login" />
+      exact
+      component={(props) =>
+        hasAuth() ? <Component {...props} /> : <Redirect to='/login' />
       }
     />
   );
@@ -38,5 +40,5 @@ AuthRoute.propTypes = {
 };
 
 function hasAuth() {
-  return false;
+  return true;
 }
